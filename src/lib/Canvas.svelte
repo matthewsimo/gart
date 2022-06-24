@@ -98,7 +98,7 @@
 		<!-- Page content here -->
 		<div class="mx-auto max-w-7xl h-screen p-10 flex flex-col justify-center items-center">
 			<div class="bg-white relative rounded-sm overflow-hidden w-full aspect-square shadow-page">
-				<canvas class="w-full aspect-square" bind:this={canvas} />
+				<canvas class="w-full aspect-square" bind:this={canvas} on:click={clearAndRun} />
 			</div>
 		</div>
 		{#if GUI}
