@@ -20,6 +20,7 @@
 
 	const noOp = () => {};
 
+	export let title: string = 'composition';
 	export let animate: boolean = false;
 	export let setup: (params: SetupParams) => void = noOp;
 	export let run: (params: RunParams) => void = noOp;
@@ -28,6 +29,13 @@
 	const defaultHandlers: KeyboardHandlers = {
 		KeyC: () => clear({ context, settings: { size } }),
 		KeyR: () => clearAndRun(),
+		KeyP: () => {
+			const link = document.createElement('a');
+			link.download = `${title}.png`;
+			link.href = canvas.toDataURL();
+			link.click();
+			link.remove();
+		},
 		Escape: () => (isOpen = !isOpen),
 		Space: () => {
 			isPaused = !isPaused;

@@ -16,6 +16,7 @@ Some built in hotkeys:
 
 - [c] - execute your clear handler
 - [r] - execute clearAndRun (clear handler then your run handler)
+- [p] - save current frame
 - [space] - pause animation frames
 - [escape] - open/close GUI drawer
 - [s] - (in sample only currently) regen a seed (aka, the next run will use new random numbers)
