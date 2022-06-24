@@ -12,14 +12,21 @@
 	$: console.log({ seed });
 
 	const keyboardHandlers = {
-		'KeyS': () => seed = Date.now()
+		KeyS: () => (seed = Date.now())
 	};
 
 	let strokeWidth: number = 10;
 	let step: number = 15;
 	let invert: boolean = false;
 
-	function draw(context: RunParams["context"], x: number, y: number, width: number, height: number, leftToRight: boolean) {
+	function draw(
+		context: RunParams['context'],
+		x: number,
+		y: number,
+		width: number,
+		height: number,
+		leftToRight: boolean
+	) {
 		if (leftToRight) {
 			context.moveTo(x, y);
 			context.lineTo(x + width, y + height);
@@ -44,7 +51,7 @@
 			}
 		}
 
-		context?.stroke();
+		context.stroke();
 	};
 
 	const clear = ({ context, settings }: ClearParams) => {
@@ -52,10 +59,8 @@
 		context.clearRect(0, 0, size, size);
 		context.fillStyle = invert ? 'black' : 'white';
 		context.fillRect(0, 0, size, size);
-	}
-
+	};
 </script>
-
 
 <Canvas {run} {clear} {keyboardHandlers} animate>
 	<GUI>

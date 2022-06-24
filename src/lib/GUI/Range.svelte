@@ -4,20 +4,20 @@
 	export let value: number;
 	export let step: number;
 	export let title: string = 'Range Title';
-  export let withTicks: boolean = false;
+	export let withTicks: boolean = false;
 	$: id = title.toLowerCase().split(' ').join('-');
 
-  const getNumberOfTicks = (min: number, max: number, step: number): number => {
-    let ticksNum = 0;
+	const getNumberOfTicks = (min: number, max: number, step: number): number => {
+		let ticksNum = 0;
 
-    for(let i = min; i <= max; i = i + step) {
-      ticksNum++;
-    }
-    
-    return ticksNum;
-  };
+		for (let i = min; i <= max; i = i + step) {
+			ticksNum++;
+		}
 
-  $: numberOfTicks = withTicks ? getNumberOfTicks(min, max, step) : 0; 
+		return ticksNum;
+	};
+
+	$: numberOfTicks = withTicks ? getNumberOfTicks(min, max, step) : 0;
 </script>
 
 <div class="form-control w-full max-w-xs">
@@ -26,11 +26,11 @@
 	</label>
 	<input {id} type="range" {min} {max} bind:value class="range" {step} />
 
-  {#if withTicks}
-  <div class="w-full flex justify-between text-xs px-2">
-    {#each [...new Array(numberOfTicks)] as _ }
-    <span>|</span>
-    {/each}
-  </div>
-  {/if}
+	{#if withTicks}
+		<div class="w-full flex justify-between text-xs px-2">
+			{#each [...new Array(numberOfTicks)] as _}
+				<span>|</span>
+			{/each}
+		</div>
+	{/if}
 </div>

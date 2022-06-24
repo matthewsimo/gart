@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-  export let title: string;
+	export let title: string;
 	export let value: string | number;
 
 	let input: HTMLInputElement;
@@ -16,17 +16,15 @@
 	});
 </script>
 
-
 <div class="form-control">
-  <label class="input-group">
-    <span>{title}</span>
-    <input
-      type="text"
-      bind:value
-      bind:this={input}
-      placeholder="Type here"
-      class="input input-bordered w-full max-w-xs"
-    />
-  </label>
+	<label class="input-group">
+		<span>{title}</span>
+		<input
+			type="text"
+			bind:value
+			bind:this={input}
+			placeholder="Type here"
+			class="input input-bordered w-full max-w-xs"
+		/>
+	</label>
 </div>
-

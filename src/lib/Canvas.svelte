@@ -15,6 +15,7 @@
 </script>
 
 <script lang="ts">
+	import { browser } from '$app/env';
 	import { onDestroy, onMount } from 'svelte';
 
 	const noOp = () => {};
@@ -85,7 +86,9 @@
 			cancelAnimationFrame(raf);
 		}
 
-		// window.removeEventListener('resize', resize);
+		if (browser) {
+			window.removeEventListener('resize', resize);
+		}
 	});
 
 	$: {
@@ -103,8 +106,12 @@
 <div class="drawer drawer-end">
 	<input id="my-drawer-4" type="checkbox" class="drawer-toggle" bind:checked={isOpen} />
 	<div class="drawer-content">
-		<div class="mx-auto max-w-7xl h-full w-11/12 grid grid-cols-1 grid-rows-1 py-6 md:py-10 lg:py-12 xl:py-16">
-			<div class="w-full max-h-full aspect-square bg-white relative rounded-sm overflow-hidden shadow-page place-self-center">
+		<div
+			class="mx-auto max-w-7xl h-full w-11/12 grid grid-cols-1 grid-rows-1 py-6 md:py-10 lg:py-12 xl:py-16"
+		>
+			<div
+				class="w-full max-h-full aspect-square bg-white relative rounded-sm overflow-hidden shadow-page place-self-center"
+			>
 				<canvas class="w-full max-h-full aspect-square" bind:this={canvas} on:click={clearAndRun} />
 			</div>
 			{#if hasGUI}
