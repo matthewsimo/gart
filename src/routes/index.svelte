@@ -57,7 +57,7 @@
 </script>
 
 
-<Canvas {run} {clear} {keyboardHandlers}>
+<Canvas {run} {clear} {keyboardHandlers} animate>
 	<GUI slot="GUI">
 		<Input title="Seed" bind:value={seed} />
 		<Range title="Stroke Width" min={2} max={13} bind:value={strokeWidth} step={1} withTicks />
