@@ -1,4 +1,4 @@
-# gart 
+# gart
 
 My simple generative art/creative coding environment built on sveltekit.
 
@@ -7,17 +7,18 @@ My simple generative art/creative coding environment built on sveltekit.
 gart features:
 
 - seeded pseudo random number generator
-- GUI utils 
+- GUI utils
 - animation support with simple flag
 - default hotkeys, with support to easily add your own (see below)
 - basic starter composition based on https://generativeartistry.com/tutorials/tiled-lines/ (Thanks for the inspiration Ruth & Tim!)
 
 Some built in hotkeys:
 
-- [space] - execute your clear handler
-- [r] - execute clearAndRun (your clear handler thehn your run handlers)
-- [s] - (in sample only currently) regen a seed (aka, the next run will use new random numbers) 
+- [c] - execute your clear handler
+- [r] - execute clearAndRun (clear handler then your run handler)
+- [space] - pause animation frames
 - [escape] - open/close GUI drawer
+- [s] - (in sample only currently) regen a seed (aka, the next run will use new random numbers)
 
 ## Developing
 
@@ -29,4 +30,5 @@ npm run dev
 # or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
+
 The `--host` flag is useful if you want to "curate" on another device.

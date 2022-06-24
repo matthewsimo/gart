@@ -26,9 +26,13 @@
 	export let clear: (params: ClearParams) => void = noOp;
 
 	const defaultHandlers: KeyboardHandlers = {
-		Space: () => clear({ context, settings: { size } }),
+		KeyC: () => clear({ context, settings: { size } }),
 		KeyR: () => clearAndRun(),
-		Escape: () => (isOpen = !isOpen)
+		Escape: () => (isOpen = !isOpen),
+		Space: () => {
+			isPaused = !isPaused;
+			clearAndRun();
+		}
 	};
 	export let keyboardHandlers: KeyboardHandlers;
 
@@ -38,9 +42,11 @@
 	let context: CanvasRenderingContext2D;
 	let size: number;
 
+	let isPaused: boolean = false;
 	let finishedSetup: boolean = false;
 
 	const handleKeydown = (e: KeyboardEvent) => {
+		console.log({ code: e.code });
 		for (const handler in allHandlers) {
 			if (e.code === handler) {
 				allHandlers[handler]();
@@ -51,7 +57,7 @@
 	let raf: number;
 
 	const clearAndRun = () => {
-		if (animate) {
+		if (animate && !isPaused) {
 			raf = requestAnimationFrame(clearAndRun);
 		}
 		clear({ context, settings: { size } });
