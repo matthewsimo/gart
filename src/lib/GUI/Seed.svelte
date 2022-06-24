@@ -22,14 +22,14 @@
 </script>
 
 <div class="form-control w-full max-w-xs flex-row justify-between">
-	<label class="input-group w-9/12">
-		<span>{title}</span>
+	<label class="input-group input-group-sm w-9/12">
+		<span class="px-3">{title}</span>
 		<input
 			type="number"
 			bind:value
 			bind:this={input}
 			placeholder="Type here"
-			class="input input-bordered w-full max-w-xs"
+			class="input input-bordered w-full max-w-xs px-3"
 		/>
 	</label>
 	{#if regen}
