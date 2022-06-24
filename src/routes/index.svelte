@@ -14,7 +14,7 @@
 	const regenSeed = () => (seed = Date.now());
 
 	const keyboardHandlers = {
-		KeyS: () => (seed = Date.now())
+		KeyS: () => regenSeed()
 	};
 
 	let strokeWidth: number = 10;
