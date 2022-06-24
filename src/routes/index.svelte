@@ -3,14 +3,15 @@
 	import type { RunParams, ClearParams } from '$lib/Canvas.svelte';
 
 	import GUI from '$lib/GUI/GUI.svelte';
-	import Input from '$lib/GUI/Input.svelte';
+	import Seed from '$lib/GUI/Seed.svelte';
 	import Range from '$lib/GUI/Range.svelte';
 	import Checkbox from '$lib/GUI/Checkbox.svelte';
 
 	import { pRand } from '$lib/pRand';
 
-	let seed: number | string = Date.now();
+	let seed: number = Date.now();
 	$: console.log({ seed });
+	const regenSeed = () => (seed = Date.now());
 
 	const keyboardHandlers = {
 		KeyS: () => (seed = Date.now())
@@ -65,7 +66,7 @@
 
 <Canvas title={`demo-${seed}`} {run} {clear} {keyboardHandlers} animate>
 	<GUI>
-		<Input title="Seed" bind:value={seed} />
+		<Seed title="Seed" bind:value={seed} regen={regenSeed} />
 		<Range title="Stroke Width" min={2} max={13} bind:value={strokeWidth} step={1} withTicks />
 		<Range title="Step Size" min={10} max={100} bind:value={step} step={5} />
 		<Checkbox title="Invert" bind:value={invert} />
