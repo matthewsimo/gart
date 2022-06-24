@@ -57,14 +57,18 @@
 		run({ context, settings: { size } });
 	};
 
-	onMount(() => {
-		context = canvas.getContext('2d') as CanvasRenderingContext2D;
+	const resize = () => {
 		const { width } = canvas.getBoundingClientRect();
 		size = width;
 		const dpr = window.devicePixelRatio;
 		canvas.width = size * dpr;
 		canvas.height = size * dpr;
 		context?.scale(dpr, dpr);
+	};
+
+	onMount(() => {
+		context = canvas.getContext('2d') as CanvasRenderingContext2D;
+		resize();
 
 		finishedSetup = true;
 		setup({ context });
@@ -72,12 +76,16 @@
 		if (animate) {
 			raf = requestAnimationFrame(clearAndRun);
 		}
+
+		window.addEventListener('resize', resize);
 	});
 
 	onDestroy(() => {
 		if (raf) {
 			cancelAnimationFrame(raf);
 		}
+
+		// window.removeEventListener('resize', resize);
 	});
 
 	$: {
@@ -86,7 +94,7 @@
 		}
 	}
 
-	let GUI = $$slots.GUI;
+	let hasGUI = $$slots.default;
 	let isOpen: boolean = false;
 </script>
 
@@ -95,35 +103,34 @@
 <div class="drawer drawer-end">
 	<input id="my-drawer-4" type="checkbox" class="drawer-toggle" bind:checked={isOpen} />
 	<div class="drawer-content">
-		<!-- Page content here -->
-		<div class="mx-auto max-w-7xl h-screen p-10 flex flex-col justify-center items-center">
-			<div class="bg-white relative rounded-sm overflow-hidden w-full aspect-square shadow-page">
-				<canvas class="w-full aspect-square" bind:this={canvas} on:click={clearAndRun} />
+		<div class="mx-auto max-w-7xl h-full w-11/12 grid grid-cols-1 grid-rows-1 py-6 md:py-10 lg:py-12 xl:py-16">
+			<div class="w-full max-h-full aspect-square bg-white relative rounded-sm overflow-hidden shadow-page place-self-center">
+				<canvas class="w-full max-h-full aspect-square" bind:this={canvas} on:click={clearAndRun} />
 			</div>
-		</div>
-		{#if GUI}
-			<label
-				for="my-drawer-4"
-				class="drawer-button btn btn-sm btn-circle btn-primary shadow-md absolute top-12 right-12"
-			>
-				<span class="hidden">Open drawer</span>
-				<svg
-					width="24"
-					height="24"
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					class="w-5 h-5 stroke-current"
+			{#if hasGUI}
+				<label
+					for="my-drawer-4"
+					class="drawer-button btn btn-sm btn-circle btn-primary shadow-md absolute top-12 right-12"
 				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-					/>
-				</svg>
-			</label>
-		{/if}
+					<span class="sr-only">Open GUI Drawer</span>
+					<svg
+						width="24"
+						height="24"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						class="w-5 h-5 stroke-current"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+						/>
+					</svg>
+				</label>
+			{/if}
+		</div>
 	</div>
 	<div class="drawer-side">
 		<label for="my-drawer-4" class="drawer-overlay" />
@@ -144,7 +151,7 @@
 					/>
 				</svg>
 			</label>
-			<slot name="GUI" />
+			<slot />
 		</div>
 	</div>
 </div>

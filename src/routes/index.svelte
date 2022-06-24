@@ -58,7 +58,7 @@
 
 
 <Canvas {run} {clear} {keyboardHandlers} animate>
-	<GUI slot="GUI">
+	<GUI>
 		<Input title="Seed" bind:value={seed} />
 		<Range title="Stroke Width" min={2} max={13} bind:value={strokeWidth} step={1} withTicks />
 		<Range title="Step Size" min={10} max={100} bind:value={step} step={5} />
