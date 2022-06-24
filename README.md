@@ -1,18 +1,8 @@
-# create-svelte
+# gart 
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+My simple generative art/creative coding environment built on sveltekit.
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm init svelte
-
-# create a new project in my-app
-npm init svelte my-app
-```
+![gart sample](static/gart.png)
 
 ## Developing
 
