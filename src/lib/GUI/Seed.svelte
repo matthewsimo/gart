@@ -3,7 +3,7 @@
 
 	export let title: string;
 	export let value: number;
-	export let regen: () => any | undefined;
+	export let regen: null | (() => any) = null;
 
 	let input: HTMLInputElement;
 
@@ -22,7 +22,7 @@
 </script>
 
 <div class="form-control w-full max-w-xs flex-row justify-between">
-	<label class="input-group input-group-sm w-9/12">
+	<label class={`input-group input-group-sm ${regen ? 'w-9/12' : ''}`}>
 		<span class="px-3">{title}</span>
 		<input
 			type="number"
