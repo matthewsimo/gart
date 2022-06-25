@@ -6,13 +6,15 @@
 
 	let input: HTMLInputElement;
 
-	const handleFocus = (e: FocusEvent) => {
-		console.log(`Implement this! ${value}`, { e });
+	const handleFocus = (e: Event) => {
+		input.select();
 	};
 
 	onMount(() => {
 		input.addEventListener('focus', handleFocus);
-		return () => input.removeEventListener('focus', handleFocus);
+		return () => {
+			input.removeEventListener('focus', handleFocus);
+		};
 	});
 </script>
 
