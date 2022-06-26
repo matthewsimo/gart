@@ -1,17 +1,17 @@
 <script lang="ts">
-	import Canvas from '$lib/Canvas.svelte';
 	import type { RunParams, ClearParams } from '$lib/Canvas.svelte';
 
+	import Gart from '$lib/Gart.svelte';
 	import GUI from '$lib/GUI/GUI.svelte';
 	import Seed from '$lib/GUI/Seed.svelte';
 	import Range from '$lib/GUI/Range.svelte';
 	import Checkbox from '$lib/GUI/Checkbox.svelte';
 
-	import { pRand } from '$lib/pRand';
+	import { getSeed, randomGenerator } from '$lib/gart';
 
-	let seed: number = Date.now();
+	let seed: number = getSeed();
 	$: console.log({ seed });
-	const regenSeed = () => (seed = Date.now());
+	const regenSeed = () => (seed = getSeed());
 
 	const keyboardHandlers = {
 		KeyS: () => regenSeed()
@@ -40,7 +40,7 @@
 
 	const run = ({ context, settings }: RunParams) => {
 		const { size } = settings;
-		const getRandom = pRand(seed);
+		const getRandom = randomGenerator(seed);
 
 		context.strokeStyle = invert ? 'white' : 'black';
 		context.lineCap = 'square';
@@ -64,11 +64,11 @@
 	};
 </script>
 
-<Canvas title={`demo-${seed}`} {run} {clear} {keyboardHandlers} animate>
+<Gart title={`demo-${seed}`} {run} {clear} {keyboardHandlers} animate>
 	<GUI>
 		<Seed title="Seed" bind:value={seed} regen={regenSeed} />
 		<Range title="Stroke Width" min={2} max={13} bind:value={strokeWidth} step={1} withTicks />
 		<Range title="Step Size" min={10} max={100} bind:value={step} step={5} />
 		<Checkbox title="Invert" bind:value={invert} />
 	</GUI>
-</Canvas>
+</Gart>
