@@ -119,4 +119,4 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
-<canvas class="w-full h-full aspect-square " bind:this={canvas} on:click={clearAndRun} />
+<canvas class="w-full h-full aspect-square rounded-sm" bind:this={canvas} on:click={clearAndRun} />
