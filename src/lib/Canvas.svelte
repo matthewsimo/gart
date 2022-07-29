@@ -72,8 +72,8 @@
 	};
 
 	const resize = () => {
-		const { width } = canvas.getBoundingClientRect();
-		size = width;
+		const { width, height } = canvas.getBoundingClientRect();
+		size = Math.min(width, height);
 		const dpr = window.devicePixelRatio;
 		canvas.width = size * dpr;
 		canvas.height = size * dpr;

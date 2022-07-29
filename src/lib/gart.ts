@@ -9,3 +9,7 @@ export const randomGenerator = function* (seed: number): Generator<number, numbe
 		yield value;
 	}
 };
+
+export const constrainRand = (rand: number, min: number, max: number): number => {
+	return (rand % max) + min;
+};

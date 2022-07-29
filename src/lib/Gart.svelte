@@ -9,7 +9,7 @@
 	export let setup: (params: SetupParams) => void = noOp;
 	export let run: (params: RunParams) => void = noOp;
 	export let clear: (params: ClearParams) => void = noOp;
-	export let keyboardHandlers: KeyboardHandlers;
+	export let keyboardHandlers: KeyboardHandlers = {};
 	export let animate: boolean = false;
 
 	let hasGUI = $$slots.default;
