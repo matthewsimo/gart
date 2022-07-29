@@ -1,3 +1,5 @@
+// Copied from https://github.com/karthik/wesanderson - all credit for this goes there.
+
 type Hex = `#${string}`;
 
 const colors = {
