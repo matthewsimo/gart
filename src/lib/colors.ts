@@ -1,7 +1,5 @@
 // Copied from https://github.com/karthik/wesanderson - all credit for this goes there.
 
-type Hex = `#${string}`;
-
 const colors = {
 	BottleRocket1: ['#A42820', '#5F5647', '#9B110E', '#3F5151', '#4E2A1E', '#550307', '#0C1707'],
 	BottleRocket2: ['#FAD510', '#CB2314', '#273046', '#354823', '#1E1E1E'],
